@@ -40,8 +40,24 @@
   ];
 
   var iconColors = ['#ff6bb3', '#67d8ff', '#ffe36e', '#a78bff', '#77f2c7', '#ff9f7a', '#f7b7ff'];
+  var litColors = ['#ff4da0', '#4edcff', '#fff06a', '#b88cff', '#6dffd0', '#ff9f7a'];
   var resizeTimer = 0;
+  var glowTimer = 0;
   var lastRenderSize = '';
+
+  function createIconSvg(){
+    var wrapper = document.createElement('span');
+    var source = cuteIconSvgs[Math.floor(Math.random() * cuteIconSvgs.length)];
+    wrapper.innerHTML = source;
+
+    var svg = wrapper.firstElementChild;
+    var glow = svg.cloneNode(true);
+
+    glow.classList.add('icon-glow');
+    svg.classList.add('icon-line');
+
+    return glow.outerHTML + svg.outerHTML;
+  }
 
   function getHeartMaskPoint(t, width, height){
     var heartScale = window.LoveNeon.getHeartScale(width, height);
@@ -134,12 +150,42 @@
         icon.style.setProperty('--rotate', ((Math.random() * 44) - 22).toFixed(1) + 'deg');
         icon.style.setProperty('--opacity', (0.72 + Math.random() * 0.22).toFixed(2));
         icon.style.setProperty('--icon-color', iconColors[Math.floor(Math.random() * iconColors.length)]);
-        icon.innerHTML = cuteIconSvgs[Math.floor(Math.random() * cuteIconSvgs.length)];
+        icon.style.setProperty('--lit-color', litColors[Math.floor(Math.random() * litColors.length)]);
+        icon.innerHTML = createIconSvg();
         fragment.appendChild(icon);
       }
     }
 
     engravedPattern.appendChild(fragment);
+    startIconGlow();
+  }
+
+  function startIconGlow(){
+    window.clearInterval(glowTimer);
+
+    glowTimer = window.setInterval(function(){
+      if(document.hidden){
+        return;
+      }
+
+      var icons = engravedPattern.children;
+
+      if(!icons.length){
+        return;
+      }
+
+      var count = Math.min(4, Math.max(1, Math.floor(icons.length * 0.035)));
+
+      for(var i = 0; i < count; i++){
+        var icon = icons[Math.floor(Math.random() * icons.length)];
+        icon.style.setProperty('--lit-color', litColors[Math.floor(Math.random() * litColors.length)]);
+        icon.classList.add('is-lit');
+
+        window.setTimeout(function(node){
+          node.classList.remove('is-lit');
+        }, 3200 + Math.random() * 2600, icon);
+      }
+    }, 2600);
   }
 
   window.addEventListener('resize', function(){

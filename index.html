@@ -8,6 +8,19 @@
 	<link rel="stylesheet" type="text/css" href="./css/responsive.css">
 </head>
 <body>
+  <svg width="0" height="0" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="iconLineGlow" x="-80%" y="-80%" width="260%" height="260%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="softGlow"/>
+        <feGaussianBlur in="SourceGraphic" stdDeviation="5.2" result="wideGlow"/>
+        <feMerge>
+          <feMergeNode in="wideGlow"/>
+          <feMergeNode in="softGlow"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+  </svg>
   <div id="engravedPattern" class="engraved-pattern" aria-hidden="true"></div>
   <div id="heartBurstLayer" class="heart-burst-layer" aria-hidden="true"></div>
   <canvas id="canvas" width="1400" height="600"></canvas>

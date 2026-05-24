@@ -40,9 +40,12 @@ body {
   transform: translate(-50%, -50%) rotate(var(--rotate));
   opacity: var(--opacity);
   contain: layout paint;
+  transition: opacity 2600ms ease;
 }
 
 .engraved-icon svg {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: block;
@@ -51,7 +54,38 @@ body {
   stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 0 4px var(--icon-color));
+  filter: none;
+  transition: stroke 2600ms ease, stroke-width 2600ms ease;
+}
+
+.engraved-icon .icon-glow {
+  opacity: 0;
+  stroke: var(--lit-color);
+  stroke-width: 5.5;
+  filter: url(#iconLineGlow);
+  transition: opacity 2800ms ease, stroke 2800ms ease;
+}
+
+.engraved-icon .icon-line {
+  transition: stroke 2600ms ease, stroke-width 2600ms ease;
+}
+
+.engraved-icon.is-lit {
+  opacity: 1;
+}
+
+.engraved-icon.is-lit svg {
+  stroke: var(--lit-color);
+  stroke-width: 2.7;
+}
+
+.engraved-icon.is-lit .icon-glow {
+  opacity: 0.88;
+}
+
+.engraved-icon.is-lit .icon-line {
+  stroke: var(--lit-color);
+  stroke-width: 2.7;
 }
 
 .heart-burst-layer {
@@ -77,6 +111,32 @@ body {
   backface-visibility: hidden;
   animation: heart-burst 2350ms cubic-bezier(0.12, 0.72, 0.16, 1) forwards;
   filter: none;
+}
+
+.burst-heart.is-mega {
+  animation-duration: 3200ms;
+  z-index: 1;
+}
+
+.heart-rain {
+  position: absolute;
+  top: -12vh;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  color: var(--color);
+  opacity: 0;
+  transform: translate(-50%, -20%) rotate(var(--rotate));
+  animation: heart-rain-fall var(--duration) linear forwards;
+  contain: layout paint style;
+  backface-visibility: hidden;
+}
+
+.heart-rain svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: currentColor;
 }
 
 .burst-heart svg {
@@ -106,6 +166,29 @@ body {
       translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
       scale(var(--end-scale))
       rotate(calc(var(--rotate) + var(--spin)));
+  }
+}
+
+@keyframes heart-rain-fall {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -20%) rotate(var(--rotate)) scale(0.72);
+  }
+
+  12% {
+    opacity: 0.95;
+  }
+
+  82% {
+    opacity: 0.86;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--drift)), 118vh)
+      rotate(calc(var(--rotate) + var(--spin)))
+      scale(var(--end-scale));
   }
 }
 
