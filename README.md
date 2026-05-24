@@ -1,10 +1,10 @@
-# Neon Love
+# 💖 Neon Love
 
 Animated neon heart wallpaper with glowing colors, cute background icons, name input, and heart burst effects.
 
-[View Live Demo](https://thanhson99.github.io/love-neon/)
+👉 [View Live Demo](https://thanhson99.github.io/love-neon/)
 
-## Features
+## 🌈 Features
 
 - Responsive neon heart animation
 - Optional names in the center
