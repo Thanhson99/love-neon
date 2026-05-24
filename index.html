@@ -3,10 +3,47 @@
 <head>
 	<title>neon-love</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./res.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	<link rel="stylesheet" type="text/css" href="./css/base.css">
+	<link rel="stylesheet" type="text/css" href="./css/responsive.css">
 </head>
 <body>
+  <div id="engravedPattern" class="engraved-pattern" aria-hidden="true"></div>
+  <div id="heartBurstLayer" class="heart-burst-layer" aria-hidden="true"></div>
   <canvas id="canvas" width="1400" height="600"></canvas>
-  <script type="text/javascript" src="./script.js"></script>
+  <div id="heartText" class="heart-text" aria-live="polite"></div>
+
+  <button id="nameToggle" class="name-toggle" type="button" aria-label="Add names">
+    +
+  </button>
+
+  <form id="namePanel" class="name-panel" autocomplete="off">
+    <div class="name-panel-header">
+      <span>Names</span>
+      <button id="namePanelClose" class="name-panel-close" type="button" aria-label="Close">&times;</button>
+    </div>
+    <label>
+      First name
+      <input id="firstName" type="text" maxlength="28" placeholder="Your name">
+    </label>
+    <label>
+      Second name
+      <input id="secondName" type="text" maxlength="28" placeholder="Their name">
+    </label>
+    <label class="effect-toggle">
+      <span>Auto hearts</span>
+      <input id="autoBurstToggle" type="checkbox" disabled>
+    </label>
+    <div class="name-actions">
+      <button type="submit">Show</button>
+      <button id="clearNames" type="button">Clear</button>
+    </div>
+  </form>
+  <button id="spaceHint" class="space-hint" type="button">Hold Space for hearts</button>
+  <script type="text/javascript" src="./js/config.js"></script>
+  <script type="text/javascript" src="./js/heart.js"></script>
+  <script type="text/javascript" src="./js/icons.js"></script>
+  <script type="text/javascript" src="./js/burst.js"></script>
+  <script type="text/javascript" src="./js/names.js"></script>
 </body>
 </html>

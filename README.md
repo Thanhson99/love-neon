@@ -1,12 +1,12 @@
-# 💖 Neon Heart Animation
+# Neon Love
 
-This project showcases a beautiful **neon-style animated heart** built with HTML and CSS. It's a lightweight, responsive, and visually appealing effect—perfect for Valentine’s pages, personal websites, or creative experiments.
+Animated neon heart wallpaper with glowing colors, cute background icons, name input, and heart burst effects.
 
-👉 **[View Live Demo](https://thanhson99.github.io/loveneon123.github.io/)**
+[View Live Demo](https://thanhson99.github.io/love-neon/)
 
-## 🌈 Features
+## Features
 
-- Pure HTML & CSS
-- Neon glow animation
-- Responsive design
-- Lightweight and fast
+- Responsive neon heart animation
+- Optional names in the center
+- Tap, click, or hold Space for heart burst effects
+- Lightweight HTML, CSS, and JavaScript
